@@ -1,0 +1,25 @@
+@startuml
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Container.puml
+
+LAYOUT_LEFT_RIGHT
+
+Person(user, Consumer, "sport user")
+Person(user2, Consumer, "sport user")
+
+Container(sport, "Any Sport", "Tennis, Paddle")
+
+System_Boundary(corpo_app, "Corpo App") {
+    System(corpo, "Core App")
+
+    ContainerDb(database, "Database", "postgresql Database", "Stores user registration, match, leaderboard, ... informations")
+}
+
+System(match, "Consumers Match")
+
+Rel(user, sport, "Use")
+Rel(user2, sport, "Use")
+Rel(corpo, database, "Store")
+Rel(sport, corpo, "Use")
+Rel(corpo, match, "Generate")
+
+@enduml
