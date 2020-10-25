@@ -1,0 +1,14 @@
+title Corpo app
+
+actor User
+User->Core: Get list of event
+Core->Database: Retrieve list of available events for user
+Database-->User: Http 200 - List of events
+User->Core: Subscribe to event
+Core->+Database: Store user to event
+Database->Notification core: send email with summary of registration
+Database-->-User: Http 204 - No content 
+
+
+note over Notification core: 1 day before the event
+Notification core->Notification core: Send a reminder to user

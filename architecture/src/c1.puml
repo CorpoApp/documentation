@@ -14,7 +14,7 @@ System_Boundary(corpo_app, "Corpo App") {
     ContainerDb(database, "Database", "postgresql Database", "Stores user registration, match, leaderboard, ... informations")
 }
 
-System(match, "Consumers Match")
+System(match, "Match meeting")
 
 Rel(user, sport, "Use")
 Rel(user2, sport, "Use")
