@@ -9,7 +9,6 @@ with Diagram("Corpo k8s Service", show=True,direction="TB"):
 
     user = User()
 
-    #external from Decathlon nextwork
     with Cluster("k8s"):
         ing = Ingress("")
         srv = Service("")
