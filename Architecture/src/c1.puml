@@ -1,25 +1,16 @@
 @startuml
-!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Container.puml
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Context.puml
 
-LAYOUT_LEFT_RIGHT
+LAYOUT_TOP_DOWN
 
-Person(user, Consumer, "sport user")
-Person(user2, Consumer, "sport user")
+Person(user, Sportsman , "An amateur sportsman who wants to practice his favorite sport with other people")
+System(webApp, "Internet Corporation Application", "Allows sportsman to subscribe to corporation, watch incoming events, subscribe and unsubscribe to events")
+System(backend, "Corporation Application System", "Store all information about events and sportsmen")
+System_Ext(bot, "Chat bot", "The google chat bot in charge to give information about events.")
 
-Container(sport, "Any Sport", "Tennis, Paddle")
-
-System_Boundary(corpo_app, "Corpo App") {
-    System(corpo, "Core App")
-
-    ContainerDb(database, "Database", "postgresql Database", "Stores user registration, match, leaderboard, ... informations")
-}
-
-System(match, "Consumers Match")
-
-Rel(user, sport, "Use")
-Rel(user2, sport, "Use")
-Rel(corpo, database, "Store")
-Rel(sport, corpo, "Use")
-Rel(corpo, match, "Generate")
+Rel(user, webApp,"Views incoming events, subscribe and unsubscribe to events")
+Rel(webApp, backend,"Gets events information and manage subscription")
+Rel(webApp, bot,"Send information using")
+Rel(bot, user,"Show information to")
 
 @enduml
